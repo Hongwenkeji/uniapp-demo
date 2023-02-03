@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import router from "../router/index.js";
+import router from '@/router/index.js'
 export default {
     data() {
         return {
@@ -26,17 +26,13 @@ export default {
     },
     methods: {
         tabBarchange(e) {
-            router.switchTab({
+            
+           router.switchTab({
                 url: this.tabBar[e].pagePath,
                 params: { id: 0 },
             });
         },
-    },
-    created() {
-        router.beforEach((to,from,next)=>{
-            console.log(to,from,next);
-        })
-    },
+    }
 };
 </script>
 

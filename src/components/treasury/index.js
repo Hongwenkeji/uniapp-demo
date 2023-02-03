@@ -9,10 +9,8 @@ const prototype={
 const install=(Vue)=>{
     for (const key in prototype) {
         const item = prototype[key];
-        console.log(item);
+        Vue.prototype[key]=item
     }
-    Vue.prototype.$get=http.get
-    
 }
 
 export default{

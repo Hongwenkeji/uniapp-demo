@@ -1,4 +1,4 @@
-# yilian-applet
+# uni-demo
 
 ## Project setup
 ```

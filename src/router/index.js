@@ -1,4 +1,4 @@
-import Router from "./router.js"
+import Router from "@/common/uniRouter"
 
 export const route = {
     pages: [
