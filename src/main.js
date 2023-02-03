@@ -27,7 +27,6 @@ Vue.use(treasury)
 import httpInterceptor from './utils/interceptor.js'
 Vue.use(httpInterceptor, app)
 
-
 // #ifdef VUE3
 import { createSSRApp } from 'vue'
 export function createApp() {

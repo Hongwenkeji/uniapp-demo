@@ -1,3 +1,5 @@
+import { object } from "@dcloudio/vue-cli-plugin-uni/packages/postcss/tags";
+
 class Router {
 	// 主要请求部分
 	uniRoute(options = {}) {
@@ -7,7 +9,8 @@ class Router {
 		options.complete = (response) => {
 			if (response.errMsg == `${options.type}:ok`) {
 				if (this.afterEach && typeof this.afterEach === 'function') {
-					this.afterEach(to,from);
+					this.afterEach(to, from);
+					this.params = options.params
 				}
 			} else {
 				this.errCallback(response)
@@ -18,7 +21,7 @@ class Router {
 		}
 		// 检查请求拦截
 		if (this.beforeEach && typeof this.beforeEach === 'function') {
-			this.beforeEach(to,from,openPage)
+			this.beforeEach(to, from, openPage)
 		}
 		else {
 			openPage
@@ -26,23 +29,36 @@ class Router {
 
 
 	}
-	constructor({routes}) {
+	constructor({ routes }) {
 		// 拦截器
 		this.beforeEach = null
 		this.afterEach = null
 		this.errCallback = null
-		this.switchTab = (options = { url: '' }) => {
-			return this.uniRoute({
-				type: 'switchTab',
-				url: options.url
-			})
+		this.params = null
+		this.switchTab = (options = { url: '', params: {} }) => {
+			return this.uniRoute(Object.assign({
+				type: 'switchTab'
+			}, options))
 		}
-		// get请求
-		this.navigateTo = (options = { url: '' }) => {
-			return this.uniRoute({
-				type: 'navigateTo',
-				url: options.url
-			})
+		this.navigateTo = (options = { url: '', params: {},animationType: 'pop-out', animationDuration: 300 }) => {
+			return this.uniRoute(Object.assign({
+				type: 'navigateTo'
+			}, options))
+		}
+		this.redirectTo = (options = { url: '', params: {} }) => {
+			return this.uniRoute(Object.assign({
+				type: 'redirectTo'
+			}, options))
+		}
+		this.reLaunch = (options = { url: '', params: {} }) => {
+			return this.uniRoute(Object.assign({
+				type: 'reLaunch'
+			}, options))
+		}
+		this.navigateBack = (options = { delta: 1, animationType: 'pop-out', animationDuration: 300 }) => {
+			return this.uniRoute(Object.assign({
+				type: 'navigateBack'
+			}, options))
 		}
 	}
 }

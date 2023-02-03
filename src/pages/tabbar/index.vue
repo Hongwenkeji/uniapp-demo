@@ -38,7 +38,7 @@ export default {
         },
     },
     onLoad(options) {
-       console.log(ROUTES);
+    //    console.log(ROUTES);
     },
 };
 </script>
