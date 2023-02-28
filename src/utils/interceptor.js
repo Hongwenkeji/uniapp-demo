@@ -1,6 +1,6 @@
 const install = (Vue, vm) => {
 	// 此为自定义配置参数，具体参数见上方说明
-	Vue.prototype.$u.http.setConfig({
+	Vue.prototype.$http.setConfig({
 		// ......
 	});
 	

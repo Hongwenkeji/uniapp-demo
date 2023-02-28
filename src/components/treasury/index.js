@@ -1,4 +1,4 @@
-import http from './function/request.js'
+import http from '../../common/request.js'
 const prototype={
     $get:http.get,
     $post:http.post,

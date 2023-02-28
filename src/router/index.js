@@ -3,16 +3,10 @@ import Router from "@/common/uniRouter"
 export const route = {
     pages: [
         {
-            "path": "pages/tabbar/index",
-            "style": {
-                "navigationBarTitleText": "uni-app"
-            }
+            "path": "pages/tabbar/index"
         },
         {
-            "path": "pages/tabbar/personal",
-            "style": {
-                "navigationBarTitleText": "uni-app"
-            }
+            "path": "pages/tabbar/personal"
         }
     ],
     tabBar: {

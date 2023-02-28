@@ -1,4 +1,3 @@
-import { object } from "@dcloudio/vue-cli-plugin-uni/packages/postcss/tags";
 
 class Router {
 	// 主要请求部分
@@ -13,10 +12,16 @@ class Router {
 					this.params = options.params
 				}
 			} else {
-				this.errCallback(response)
+				if (this.errCallback && typeof this.errCallback === 'function') {
+					this.errCallback(response)
+				}
+				return Promise.reject(response)
 			}
 		}
-		const openPage = () => {
+		const openPage = (params) => {
+			if (params) {
+				options=Object.assign(options,params)
+			} 
 			uni[options.type](options)
 		}
 		// 检查请求拦截
@@ -40,7 +45,7 @@ class Router {
 				type: 'switchTab'
 			}, options))
 		}
-		this.navigateTo = (options = { url: '', params: {},animationType: 'pop-out', animationDuration: 300 }) => {
+		this.navigateTo = (options = { url: '', params: {}, animationType: 'pop-out', animationDuration: 300 }) => {
 			return this.uniRoute(Object.assign({
 				type: 'navigateTo'
 			}, options))
