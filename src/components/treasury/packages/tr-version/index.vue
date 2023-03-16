@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import config from "@/vue.config.js";
+// import config from "@/vue.config.js";
 export default {
     name: "tr-version-up",
     model: {
@@ -65,7 +65,7 @@ export default {
         */
         startUpdate() {
             var dtask = plus.downloader.createDownload(
-                config.downloadsURL,
+                'config.downloadsURL',
                 {
                     filename: "_downloads/",
                 },

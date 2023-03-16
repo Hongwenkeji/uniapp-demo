@@ -26,7 +26,7 @@
 	},
 	"easycom": {
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue",
-		"^tr-(.*)": "@/components/treasury/tr-$1/src/index.vue"
+		"^tr-(.*)": "@/components/treasury/packages/tr-$1/index.vue"
 	},
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

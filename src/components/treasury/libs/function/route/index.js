@@ -1,5 +1,4 @@
-
-class Router {
+export default class uniRouter {
 	// 主要请求部分
 	uniRoute(options = {}) {
 		var pages = getCurrentPages();
@@ -20,8 +19,8 @@ class Router {
 		}
 		const openPage = (params) => {
 			if (params) {
-				options=Object.assign(options,params)
-			} 
+				options = Object.assign(options, params)
+			}
 			uni[options.type](options)
 		}
 		// 检查请求拦截
@@ -34,37 +33,36 @@ class Router {
 
 
 	}
-	constructor({ routes }) {
+	constructor(options = {}) {
 		// 拦截器
 		this.beforeEach = null
 		this.afterEach = null
 		this.errCallback = null
 		this.params = null
-		this.switchTab = (options = { url: '', params: {} }) => {
-			return this.uniRoute(Object.assign({
-				type: 'switchTab'
-			}, options))
-		}
-		this.navigateTo = (options = { url: '', params: {}, animationType: 'pop-out', animationDuration: 300 }) => {
-			return this.uniRoute(Object.assign({
-				type: 'navigateTo'
-			}, options))
-		}
-		this.redirectTo = (options = { url: '', params: {} }) => {
-			return this.uniRoute(Object.assign({
-				type: 'redirectTo'
-			}, options))
-		}
-		this.reLaunch = (options = { url: '', params: {} }) => {
-			return this.uniRoute(Object.assign({
-				type: 'reLaunch'
-			}, options))
-		}
-		this.navigateBack = (options = { delta: 1, animationType: 'pop-out', animationDuration: 300 }) => {
-			return this.uniRoute(Object.assign({
-				type: 'navigateBack'
-			}, options))
-		}
+	}
+	switchTab = (options = { url: '', params: {} }) => {
+		return this.uniRoute(Object.assign({
+			type: 'switchTab'
+		}, options))
+	}
+	navigateTo = (options = { url: '', params: {}, animationType: 'pop-out', animationDuration: 300 }) => {
+		return this.uniRoute(Object.assign({
+			type: 'navigateTo'
+		}, options))
+	}
+	redirectTo = (options = { url: '', params: {} }) => {
+		return this.uniRoute(Object.assign({
+			type: 'redirectTo'
+		}, options))
+	}
+	reLaunch = (options = { url: '', params: {} }) => {
+		return this.uniRoute(Object.assign({
+			type: 'reLaunch'
+		}, options))
+	}
+	navigateBack = (options = { delta: 1, animationType: 'pop-out', animationDuration: 300 }) => {
+		return this.uniRoute(Object.assign({
+			type: 'navigateBack'
+		}, options))
 	}
 }
-export default Router

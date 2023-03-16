@@ -6,20 +6,23 @@ import Vue from 'vue'
 import store from '@/store'
 Vue.prototype.$store = store
 // 路由
-import router from './router'
-Vue.use(router)
+import uniRouter from './router'
+Vue.prototype.$uniRouter=uniRouter
 // 路由拦截器
-import  './utils/permission.js'
+import './utils/permission.js'
 Vue.config.productionTip = false
 App.mpType = 'app'
 const app = new Vue({
-  store,
-  ...App
+	uniRouter,
+	store,
+	...App
 })
 app.$mount()
 // #endif
+// uView库
 import uView from "uview-ui";
 Vue.use(uView);
+// treasury库
 import treasury from '@/components/treasury'
 Vue.use(treasury)
 
@@ -30,9 +33,10 @@ Vue.use(httpInterceptor, app)
 // #ifdef VUE3
 import { createSSRApp } from 'vue'
 export function createApp() {
-  const app = createSSRApp(App)
-  return {
-    app
-  }
+	const app = createSSRApp(App)
+	return {
+		
+		app
+	}
 }
 // #endif

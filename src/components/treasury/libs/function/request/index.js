@@ -2,7 +2,7 @@ class Request {
 	// 设置全局默认配置
 	setConfig(customConfig) {
 		// 深度合并对象，否则会造成对象深层属性丢失
-		this.config = object.assign(this.config,customConfig);
+		this.config = Object.assign(this.config,customConfig);
 	}
 
 	// 主要请求部分

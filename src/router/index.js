@@ -1,4 +1,4 @@
-import Router from "@/common/uniRouter"
+import uniRouter from "@/components/treasury/libs/function/route/index.js"
 
 export const route = {
     pages: [
@@ -22,6 +22,6 @@ export const route = {
         ]
     }
 }
-export default new Router({
+export default new uniRouter({
     routes:route.pages
 })

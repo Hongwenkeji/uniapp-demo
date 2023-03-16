@@ -1,13 +1,16 @@
 <template>
     <view class="page">
         <slot></slot>
-        <u-tabbar :list="tabBar" @change="tabBarchange"></u-tabbar>
+        <u-tabbar
+            :list="tabBar"
+            @change="tabBarchange"
+            v-model="current"
+        ></u-tabbar>
         <tr-version />
     </view>
 </template>
 
 <script>
-import router from '@/router/index.js'
 export default {
     data() {
         return {
@@ -26,13 +29,13 @@ export default {
     },
     methods: {
         tabBarchange(e) {
-            
-           router.switchTab({
+            console.log(this.$uniRouter);
+            this.$uniRouter.switchTab({
                 url: this.tabBar[e].pagePath,
-                params: { id: 0 },
             });
         },
-    }
+        
+    },
 };
 </script>
 
