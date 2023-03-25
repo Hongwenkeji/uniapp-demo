@@ -1,5 +1,6 @@
 let ReachBottom
 let PullDownRefresh
+let PageScroll
 export default {
     onReachBottom() {
         if (ReachBottom) {
@@ -17,14 +18,22 @@ export default {
         this.pageClose()
     },
     onHide() {
-        this.pageClose()
+        // this.pageClose()
     },
+    onPageScroll(e) {
+		if(PageScroll){
+            return PageScroll.$emit('PageScroll',e)
+        }
+        PageScroll = uni.$emit('PageScroll',e)
+	},
     methods:{
         pageClose(){
             uni.$off('ReachBottom')
             uni.$off('PullDownRefresh')
+            uni.$off('PageScroll')
             ReachBottom = null
             PullDownRefresh = null
+            PageScroll=null
         }
     }
 }

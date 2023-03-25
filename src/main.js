@@ -25,7 +25,9 @@ Vue.use(uView);
 // treasury库
 import treasury from '@/components/treasury'
 Vue.use(treasury)
-
+// 模板页
+import layout from './layout'
+Vue.component('layout',layout)
 // http请求拦截器
 import httpInterceptor from './utils/interceptor.js'
 Vue.use(httpInterceptor, app)

@@ -66,3 +66,15 @@ export default class uniRouter {
 		}, options))
 	}
 }
+uniRouter.install = (Vue) => {
+	Vue.mixin({
+		beforeCreate() {
+			var pages = getCurrentPages();
+			var page = pages[pages.length - 1];
+			if (page) {
+				this.$uniRouter.path = page.route
+			}
+		}
+	})
+
+}

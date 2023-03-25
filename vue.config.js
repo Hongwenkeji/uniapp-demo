@@ -1,3 +1,4 @@
+// #ifdef APP-PLUS
 if (process.env.NODE_ENV === 'production') {
 	const fs = require('fs')
 
@@ -15,6 +16,8 @@ if (process.env.NODE_ENV === 'production') {
 		flag: "w",
 	});
 }
+// #endif
+
 const config = require('./src/config')
 module.exports = {
 	chainWebpack: con => {

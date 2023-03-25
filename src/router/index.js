@@ -1,5 +1,6 @@
 import uniRouter from "@/components/treasury/libs/function/route/index.js"
-
+import Vue from "vue"
+Vue.use(uniRouter)
 export const route = {
     pages: [
         {

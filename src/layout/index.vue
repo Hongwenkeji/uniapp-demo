@@ -6,7 +6,9 @@
             @change="tabBarchange"
             v-model="current"
         ></u-tabbar>
+        <!-- #ifdef APP-PLUS -->
         <tr-version />
+        <!-- #endif -->
     </view>
 </template>
 
@@ -29,12 +31,10 @@ export default {
     },
     methods: {
         tabBarchange(e) {
-            console.log(this.$uniRouter);
             this.$uniRouter.switchTab({
                 url: this.tabBar[e].pagePath,
             });
         },
-        
     },
 };
 </script>
