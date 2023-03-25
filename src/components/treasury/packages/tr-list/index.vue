@@ -4,9 +4,9 @@
             <slot
                 :leftlist="leftlist"
                 :rightlist="rightlist"
-                v-if="iswaterfall"
+                v-if="waterfall"
             ></slot>
-            <slot :list="datalist" v-if="!iswaterfall"></slot>
+            <slot :list="datalist" v-if="!waterfall"></slot>
             <u-empty
                 text="暂无数据"
                 margin-top="200"
@@ -15,9 +15,7 @@
             ></u-empty>
         </view>
         <u-loadmore
-            v-show="
-                datalist.length > 0 
-            "
+            v-show="datalist.length > 0"
             class="u__loadmore"
             :status="status"
             :icon-type="iconType"
@@ -29,12 +27,12 @@
 <script>
 export default {
     props: {
-        iswaterfall: {
+        waterfall: {
             type: Boolean,
             default: false,
         },
         url: String,
-        
+
         iconType: {
             type: String,
             default: "flower",
@@ -55,7 +53,7 @@ export default {
                 return {};
             },
         },
-        isRefresh: {
+        refresh: {
             type: Boolean,
             default: false,
         },
@@ -66,7 +64,7 @@ export default {
         },
     },
     watch: {
-        isRefresh(val) {
+        refresh(val) {
             if (val) {
                 this.get_dataList();
             }
@@ -78,7 +76,7 @@ export default {
                 page_no: 1,
                 page_size: 20,
             },
-            status: 'loadmore',
+            status: "loadmore",
             total: 0,
             datalist: [],
             rightlist: [],
@@ -87,7 +85,7 @@ export default {
     },
     methods: {
         get_dataList() {
-            let { method, url, queryParams, iswaterfall, params } = this;
+            let { method, url, queryParams, waterfall, params } = this;
             return new Promise((resolve, reject) => {
                 this[method](url, Object.assign(queryParams, params))
                     .then(({ data }) => {
@@ -107,7 +105,7 @@ export default {
                             });
                         }
                         // 是否是瀑布流
-                        if (iswaterfall) {
+                        if (waterfall) {
                             data.lists.forEach((item, index) => {
                                 if (index % 2 == 0) {
                                     this.leftlist.push(item);
@@ -116,35 +114,43 @@ export default {
                                 }
                             });
                         }
-                        this.$emit("update:isRefresh", false);
                         resolve();
                     })
                     .catch((err) => {
-                        this.$emit("update:isRefresh", false);
                         reject();
-                    }).finally(()=>{
-                        this.status='loadmore'
-                        uni.stopPullDownRefresh()
                     })
+                    .finally(() => {
+                        this.$emit("update:refresh", false);
+                        this.status = "loadmore";
+                        uni.stopPullDownRefresh();
+                    });
             });
         },
         onPageBottom() {
+            let { total } = this;
+            let { page_no, page_size } = this.params;
             uni.$on("ReachBottom", (data) => {
-                console.log('触底分页');
-                if(this.datalist.length==0)return
-                this.params.page_no++
-                this.status='loading'
+                console.log("触底分页");
+                // 判断当前页乘以条数是否大约总数，大于不触底
+                if (page_no * page_size >= total) {
+                    this.status='nomore'
+                    return
+                };
+                if (this.datalist.length == 0) return;
+                this.params.page_no++;
+                this.status = "loading";
                 setTimeout(() => {
-                    this.$emit("update:isRefresh", true);
+                    this.$emit("update:refresh", true);
                 }, 500);
             });
         },
         onPageRefresh() {
             uni.$on("PullDownRefresh", (data) => {
-                console.log('下拉刷新');
-                this.params.page_no=1
+                console.log("下拉刷新");
+                this.params.page_no = 1;
+                this.status = "loadmore";
                 setTimeout(() => {
-                    this.$emit("update:isRefresh", true);
+                    this.$emit("update:refresh", true);
                 }, 500);
             });
         },
@@ -157,7 +163,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.u__loadmore{
-    margin-top: 20rpx;display: block;
+.u__loadmore {
+    margin-top: 20rpx;
+    display: block;
 }
 </style>

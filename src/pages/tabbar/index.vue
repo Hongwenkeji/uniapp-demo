@@ -1,6 +1,6 @@
 <template>
     <layout>
-        <button @tap="tabBarchange(1)">显示</button>
+        <button>显示</button>
         <button>隐藏</button>
     </layout>
 </template>

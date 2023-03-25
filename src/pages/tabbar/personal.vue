@@ -4,10 +4,7 @@
 
 <script>
 export default {
-   
-    onLoad(options) {
-        console.log(router.params);
-    }
+
 };
 </script>
 
