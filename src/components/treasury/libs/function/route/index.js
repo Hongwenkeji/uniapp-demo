@@ -2,7 +2,8 @@ export default class uniRouter {
 	// 主要请求部分
 	uniRoute(options = {}) {
 		var pages = getCurrentPages();
-		var from = pages[pages.length - 1];
+		let page=pages[pages.length - 1]
+		var from = Object.assign({url:`/${page.route}`},page);
 		var to = { url: options.url, params: options.params }
 		options.complete = (response) => {
 			if (response.errMsg == `${options.type}:ok`) {

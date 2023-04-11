@@ -15,7 +15,10 @@
             ></u-empty>
         </view>
         <u-loadmore
-            v-show="datalist.length > 0"
+            v-show="
+                datalist.length > 0 &&
+                datalist.length > params.page_no * params.page_size
+            "
             class="u__loadmore"
             :status="status"
             :icon-type="iconType"
@@ -133,9 +136,9 @@ export default {
                 console.log("触底分页");
                 // 判断当前页乘以条数是否大约总数，大于不触底
                 if (page_no * page_size >= total) {
-                    this.status='nomore'
-                    return
-                };
+                    this.status = "nomore";
+                    return;
+                }
                 if (this.datalist.length == 0) return;
                 this.params.page_no++;
                 this.status = "loading";

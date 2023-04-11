@@ -1,10 +1,23 @@
-label{
+label {
     white-space: nowrap;
 }
+
 uni-page-body {
     height: 100%;
 }
-image{
+
+image {
     width: 100%;
     height: 100%;
+}
+
+@media screen and (min-width:960rpx) {
+
+    page,
+    body {
+        width: 375px;
+        margin: auto;
+        transform: translate(0);
+    }
+
 }

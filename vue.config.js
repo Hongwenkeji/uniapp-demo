@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === 'production') {
 
 	let Manifest = JSON.parse(fs.readFileSync(manifestPath, { encoding: "utf-8" }));
 
-	Manifest.versionCode = String(Number(Manifest.versionCode) + 1)
+	Manifest.versionCode = Number(Manifest.versionCode) + 1
 
 	console.log(`上次版本：${Manifest.versionName}`, `当前发布版本：${Manifest.versionCode.split('').join('.')}`);
 
