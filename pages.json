@@ -14,6 +14,9 @@
 		}
 	],
 	"tabBar": {
+		"backgroundColor": "@tabBgColor",
+		"color": "@tabFontColor",
+		"selectedColor": "@tabSelectedColor",
 		"list": [{
 				"pagePath": "pages/tabbar/index",
 				"text": "首页"

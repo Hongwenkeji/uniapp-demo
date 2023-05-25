@@ -1,37 +1,34 @@
 <template>
-    <layout>
-        123
-        <button>显示</button>
-        <button>隐藏</button>
+	<layout>
+		<button @tap="themeChange('light')">light</button>
+		<button @tap="themeChange('dark')">dark</button>
+		<button @tap="themeChange('auto')">auto</button>
 		<u-no-network></u-no-network>
-    </layout>
+		<view class="card">
+			
+		</view>
+	</layout>
 </template>
 
 <script>
-export default {
-   
-    data() {
-        return {};
-    },
-    methods: {},
+	export default {
 
-    onShow(options) {
-       uni.onThemeChange(function (res) {
-       	console.log(res.theme);
-       });
-	  // #ifdef APP-PLUS
-	  plus.nativeUI.setUIStyle('dark');
-	   var style = plus.navigator.getUIStyle();  
-	  		console.log(style);
-	    if('dark'==style){  
-	      console.log('当前为暗黑模式');  
-	    }else{  
-	      console.log('当前为普通模式');  
-	    }  
-	  // #endif
-    },
-};
+		data() {
+			return {};
+		},
+		methods: {
+			themeChange(theme) {
+				this.$store.dispatch('themeChange', theme)
+			}
+		}
+	};
 </script>
 
-<style>
+<style lang="scss" scoped>
+	@import "../../static/style/index.scss";
+	.card{
+		width: 200rpx;
+		height: 200rpx;
+		@include background_color("_bgColor");
+	}
 </style>

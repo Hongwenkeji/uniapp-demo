@@ -1,1 +1,20 @@
-
+:theme--light body[theme-mode='light']{
+    --textColor:#000;
+    --bgColor:#fff;
+}
+:theme--dark body[theme-mode='dark']{
+    --textColor:#fff;
+    --bgColor:#000;
+}
+$themes:(
+    light:(
+        _fontColor:#000,
+        _bgColor:#fff,
+        _borderColor:#f9f9f9
+    ),
+    dark:(
+        _fontColor:#fff,
+        _bgColor:#000,
+        _borderColor:#f9f9f9
+    )
+)

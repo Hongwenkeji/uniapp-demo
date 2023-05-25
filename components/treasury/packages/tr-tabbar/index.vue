@@ -200,7 +200,7 @@
 				// 如果有配置pagePath属性，使用uni.switchTab进行跳转
 				if(this.list[index].pagePath) {
 					this.$uniRouter.switchTab({
-					    url: this.list[index].pagePath,
+					    url: `/${this.list[index].pagePath}`,
 					});
 				} else {
 					// 如果配置了papgePath属性，将不会双向绑定v-model传入的value值
