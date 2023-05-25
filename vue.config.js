@@ -1,13 +1,13 @@
 // #ifdef APP-PLUS
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' && process.env.UNI_PLATFORM==='app-plus') {
 	const fs = require('fs')
 
-	const manifestPath = "./src/manifest.json";
-
+	const manifestPath = `${process.env.UNI_INPUT_DIR}/manifest.json`;
+	
 	let Manifest = JSON.parse(fs.readFileSync(manifestPath, { encoding: "utf-8" }));
 
-	Manifest.versionCode = Number(Manifest.versionCode) + 1
-
+	Manifest.versionCode = String(Number(Manifest.versionCode) + 1)
+	
 	console.log(`上次版本：${Manifest.versionName}`, `当前发布版本：${Manifest.versionCode.split('').join('.')}`);
 
 	Manifest.versionName = Manifest.versionCode.split('').join('.')
@@ -17,15 +17,3 @@ if (process.env.NODE_ENV === 'production') {
 	});
 }
 // #endif
-
-const config = require('./src/config')
-module.exports = {
-	chainWebpack: con => {
-		con
-			.plugin('define')
-			.tap(args => {
-				args[0]['process.env'].VUE_APP_BASE_URL = process.env.NODE_ENV === 'development' ? config.dev.VUE_APP_BASE_URL : config.prod.VUE_APP_BASE_URL
-				return args
-			})
-	}
-}

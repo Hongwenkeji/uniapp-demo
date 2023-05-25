@@ -1,14 +1,10 @@
 <template>
     <view class="page">
         <slot></slot>
-        <u-tabbar
+        <tr-tabbar
             :list="tabBar"
-            @change="tabBarchange"
             v-model="current"
-        ></u-tabbar>
-        <!-- #ifdef APP-PLUS -->
-        <tr-version />
-        <!-- #endif -->
+        ></tr-tabbar>
     </view>
 </template>
 
@@ -28,22 +24,9 @@ export default {
             ],
             current: 0,
         };
-    },
-    methods: {
-        tabBarchange(e) {
-            this.$uniRouter.switchTab({
-                url: this.tabBar[e].pagePath,
-            });
-        },
-    },
+    }
 };
 </script>
 
 <style lang="scss" scoped>
-.page {
-    min-height: 100%;
-}
-uni-page-body {
-    min-height: 100%;
-}
 </style>

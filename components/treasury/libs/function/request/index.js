@@ -62,19 +62,20 @@ class Request {
 						}
 					} else {
 						// 不返回原始数据的情况下，服务器状态码不为200，modal弹框提示
-						// if(response.errMsg) {
-						// 	uni.showModal({
-						// 		title: response.errMsg
-						// 	});
-						// }
+						if(response.errMsg=='request:fail') {
+							uni.showToast({
+								title: '错误请求！',
+								icon: 'none',
+								mask: true
+							})
+						}
 						reject(response)
 					}
 				}
 			}
 
 			// 判断用户传递的URL是否/开头,如果不是,加上/，这里使用了uView的test.js验证库的url()方法
-			// options.url = validate.url(options.url) ? options.url : (this.config.baseUrl + (options.url.indexOf('/') == 0 ?
-			// 	options.url : '/' + options.url));
+			options.url = this.config.baseUrl + options.url;
 			
 			// 是否显示loading
 			// 加一个是否已有timer定时器的判断，否则有两个同时请求的时候，后者会清除前者的定时器id
