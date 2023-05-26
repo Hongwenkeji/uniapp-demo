@@ -1,10 +1,12 @@
 <template>
 	<layout>
+		{{$store.state.settings.theme}}
+		{{$store.state.settings.sysTheme}}
 		<button @tap="themeChange('light')">light</button>
 		<button @tap="themeChange('dark')">dark</button>
 		<button @tap="themeChange('auto')">auto</button>
-		<u-no-network></u-no-network>
-		<view class="card">
+		
+		<view class="card" @tap="navpage">
 			
 		</view>
 	</layout>
@@ -18,17 +20,28 @@
 		},
 		methods: {
 			themeChange(theme) {
-				this.$store.dispatch('themeChange', theme)
+				this.$store.dispatch('settingTheme', theme)
+				// uni.showModal({
+				// 	title:'提示',
+				// 	content:'主题切换'
+				// })
+				uni.showToast({
+					title:'123',
+					icon:'none'
+				})
+			},
+			navpage(){
+				this.$uniRouter.navigateTo({url:'/pages/404'})
 			}
 		}
 	};
 </script>
 
 <style lang="scss" scoped>
-	@import "../../static/style/index.scss";
 	.card{
 		width: 200rpx;
 		height: 200rpx;
-		@include background_color("_bgColor");
+		border: 1rpx solid red;
+		background-color: var(--bgColor);
 	}
 </style>

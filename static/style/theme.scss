@@ -1,20 +1,13 @@
-:theme--light body[theme-mode='light']{
-    --textColor:#000;
-    --bgColor:#fff;
+/* #ifdef H5 */
+@import 'theme-light.scss';
+@import 'theme-dark.scss';
+/* #endif */
+/* #ifdef APP-PLUS||MP-WEIXIN */
+@media (prefers-color-scheme: light) {
+	@import 'theme-light.scss'
 }
-:theme--dark body[theme-mode='dark']{
-    --textColor:#fff;
-    --bgColor:#000;
+@media (prefers-color-scheme: dark) {
+	@import 'theme-dark.scss'
 }
-$themes:(
-    light:(
-        _fontColor:#000,
-        _bgColor:#fff,
-        _borderColor:#f9f9f9
-    ),
-    dark:(
-        _fontColor:#fff,
-        _bgColor:#000,
-        _borderColor:#f9f9f9
-    )
-)
+/* #endif */
+
