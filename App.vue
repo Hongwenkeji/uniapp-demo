@@ -2,31 +2,22 @@
 	export default {
 		onLaunch: function() {
 			console.log("App Launch");
-			let sysTheme
-			// #ifdef APP-PLUS
-			sysTheme = plus.navigator.getUIStyle();
-			// #endif
-			// #ifdef H5
-			let storageTheme = uni.getStorageSync('theme')
-			if (storageTheme) {
-				sysTheme = storageTheme
-			} else {
-				const themeMedia = window.matchMedia("(prefers-color-scheme: light)");
-				themeMedia.matches ? sysTheme = 'light' : sysTheme = 'dark'
-			}
-			window.document.documentElement.setAttribute("data-theme",sysTheme);
-			// #endif
-			this.$store.commit('SETTHEME', sysTheme)
+			let storageTheme =uni.getStorageSync('theme')
+			this.$store.dispatch('settingTheme', storageTheme||'auto')
 		},
 		onShow: function() {
 			console.log("App Show");
 			uni.onThemeChange((res) => {
-				let sysTheme = res.theme
+				let sysTheme = this.$store.state.settings.sysTheme
 				let theme = this.$store.state.settings.theme
-				if (sysTheme != theme && sysTheme != 'auto') {
-					this.$store.commit('SETTHEME', sysTheme)
+				if (res.theme != theme && sysTheme === 'auto' && res.theme !== 'auto') {
+					this.$store.dispatch('themeChange', res.theme)
 				}
 			})
+			uni.onNetworkStatusChange(function (res) {
+				console.log(res.isConnected);
+				console.log(res.networkType);
+			});
 		},
 		onHide: function() {
 			console.log("App Hide");

@@ -31,7 +31,9 @@ Vue.component('layout',layout)
 // http请求拦截器
 import httpInterceptor from './utils/interceptor.js'
 Vue.use(httpInterceptor, app)
-
+// 全局Mixins
+import Mixin from '@/mixins'
+Vue.use(Mixin)
 // #ifdef VUE3
 import { createSSRApp } from 'vue'
 export function createApp() {

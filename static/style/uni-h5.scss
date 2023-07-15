@@ -1,0 +1,12 @@
+// h5独有配置
+uni-modal .uni-modal{
+	background-color: var(--modalBgColor);
+	color: var(--modalTitleColor);
+}
+uni-modal .uni-modal__btn_default{
+		color: var(--modalTitleColor) !important;
+}
+
+button{
+	
+}

@@ -35,8 +35,9 @@ export default class uniRouter {
 
 
 	}
-	constructor(options = {}) {
+	constructor({routes}) {
 		// 拦截器
+		this.routes=routes
 		this.beforeEach = null
 		this.afterEach = null
 		this.errCallback = null

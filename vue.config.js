@@ -1,4 +1,3 @@
-// #ifdef APP-PLUS
 if (process.env.NODE_ENV === 'production' && process.env.UNI_PLATFORM==='app-plus') {
 	const fs = require('fs')
 
@@ -16,4 +15,3 @@ if (process.env.NODE_ENV === 'production' && process.env.UNI_PLATFORM==='app-plu
 		flag: "w",
 	});
 }
-// #endif
