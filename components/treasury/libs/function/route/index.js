@@ -16,6 +16,7 @@ export default class uniRouter {
 				if (this.errCallback && typeof this.errCallback === 'function') {
 					this.errCallback(response)
 				}
+				navigateTo({url:'/pages/404'})
 				return Promise.reject(response)
 			}
 		}

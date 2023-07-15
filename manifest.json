@@ -58,11 +58,13 @@
 		}
 	},
 	"h5": {
-		
+
 	},
 	"quickapp": {},
 	"mp-weixin": {
-		"appid": "",
+		"darkmode": true,
+		"themeLocation": "theme.json",
+		"appid": "wxcb288790e88d11bb",
 		"setting": {
 			"urlCheck": false
 		},

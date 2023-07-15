@@ -9,6 +9,9 @@
 		<view class="card" @tap="navpage">
 			
 		</view>
+		<tr-list ref="TrList" :refresh.sync="refresh" v-slot="{list}">
+			<view style="height: 40px;line-height: 40px;" v-for="(item,index) in list" :key="index">{{ index }}</view>
+		</tr-list>
 	</layout>
 </template>
 
@@ -16,7 +19,12 @@
 	export default {
 
 		data() {
-			return {};
+			return {
+				refresh:false
+			};
+		},
+		onReady(options) {
+			this.$refs.TrList.datalist=Array.from({length:200})
 		},
 		methods: {
 			themeChange(theme) {

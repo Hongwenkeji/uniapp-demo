@@ -26,12 +26,21 @@ image {
 
 @media screen and (min-width:960rpx) {
 
-    page,
-    body {
+    page {
         width: 375px;
         margin: auto;
-        transform: translate(0);
+        // transform: translate(0);
     }
-
+	// page{
+	// 	overflow-y: auto;
+	// }
+	// body{
+	// 	overflow-y: hidden;
+	// }
+	// uni-tabbar .uni-tabbar,uni-page-head .uni-page-head{
+	// 	width: 375px;
+	// 	margin: auto;
+	// }
+	
 }
 

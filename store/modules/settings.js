@@ -50,6 +50,9 @@ const actions = {
 			const themeMedia = window.matchMedia("(prefers-color-scheme: light)");
 			themeMedia.matches ? sysTheme = 'light' : sysTheme = 'dark'
 			// #endif
+			// #ifdef MP-WEIXIN
+			
+			// #endif
 		}
 		else{
 			sysTheme=theme

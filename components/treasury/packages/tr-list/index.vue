@@ -13,6 +13,7 @@
                 :show="datalist.length == 0"
                 mode="list"
             ></u-empty>
+            <tr-back-top></tr-back-top>
         </view>
         <u-loadmore
             v-show="
